@@ -2,6 +2,14 @@ import json
 import os
 import unicodedata
 
+from openai import OpenAI
+
+
+def create_openai_client():
+    api_key = os.getenv("GPT_API_KEY") or os.getenv("OPENAI_API_KEY")
+
+    return OpenAI(api_key=api_key)
+
 
 def clean_text(text) -> str:
     if text is None:

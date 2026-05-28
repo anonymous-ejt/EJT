@@ -1,7 +1,5 @@
-from openai import OpenAI
-
 from .prompts import PromptBuilder
-from .utils import clean_text
+from .utils import clean_text, create_openai_client
 
 
 class EJTGenerator:
@@ -9,7 +7,7 @@ class EJTGenerator:
 
     def __init__(self, config, client=None):
         self.config = config
-        self.client = client or OpenAI()
+        self.client = client or create_openai_client()
 
     def generate(self, template, query) -> str:
         prompt = PromptBuilder.build_generator_prompt(template, query)

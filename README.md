@@ -43,23 +43,38 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Set your OpenAI API key in the environment, then fill in the paths and column
-names in `run.py`:
+Set your API key in the environment:
 
-```python
-config = Config(
-    model_name="gpt-...",
-    template_path="data/templates.csv",
-    query_path="data/queries.csv",
-    template_column="Template",
-    query_column="Query",
-    output_dir="outputs",
-    output_filename="ejt_results.csv",
-)
+```bash
+export GPT_API_KEY="your_api_key_here"
 ```
 
-Run the pipeline:
+On Windows PowerShell:
+
+```powershell
+$env:GPT_API_KEY="your_api_key_here"
+```
+
+The repository includes two example CSV files:
+
+- `data/Example_Template_for_EJT.csv`
+- `data/Example_Query_for_EJT.csv`
+
+`run.py` is already configured to use these files with the `prompt` and `Query`
+columns, so you can run the example directly:
 
 ```bash
 python run.py
+```
+
+By default, outputs are written to:
+
+```text
+outputs/ejt_results.csv
+```
+
+You can override the model without editing the code:
+
+```bash
+export OPENAI_MODEL="gpt-4o-mini"
 ```

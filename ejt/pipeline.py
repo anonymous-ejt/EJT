@@ -1,7 +1,6 @@
 from dataclasses import asdict
 
 import pandas as pd
-from openai import OpenAI
 from tqdm.auto import tqdm
 
 from .evaluator import IntentEvaluator, StructureEvaluator
@@ -9,7 +8,7 @@ from .generator import EJTGenerator
 from .prompts import build_fewshot
 from .refiner import FeedbackRefiner
 from .schemas import EJTPair
-from .utils import clean_text, ensure_parent_dir
+from .utils import clean_text, create_openai_client, ensure_parent_dir
 
 
 class EJTPipeline:
@@ -17,7 +16,7 @@ class EJTPipeline:
 
     def __init__(self, config, client=None):
         self.config = config
-        self.client = client or OpenAI()
+        self.client = client or create_openai_client()
 
         self.generator = EJTGenerator(config, self.client)
         self.structure_evaluator = StructureEvaluator(config)

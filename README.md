@@ -76,5 +76,5 @@ outputs/ejt_results.csv
 You can override the model without editing the code:
 
 ```bash
-export OPENAI_MODEL="gpt-4o-mini"
+export OPENAI_MODEL="gpt-5.4"
 ```
